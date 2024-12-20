@@ -10,7 +10,13 @@ grade varchar(1),
 city varchar (20)
 );
 
-v
+alter table student add column age int not null default 18 ;
+alter table student modify column age varchar(2) ;
+alter table student drop column age  ;
+alter table student rename to students  ;
+alter table students change name fullName varchar(45);
+delete from students where marks <80;
+alter table students drop column grade;
 
 insert into student (rollno , name , marks , grade  , city) values
 (1 , "Aello" , 78, "A" , "Pune"),
@@ -57,7 +63,7 @@ select city,  count(rollno) from student group by city having max(marks) > 90;
 select name , city from student where grade = "A" group by name ,city having max(marks) > 90;
 
 
-SELECT *  from student;
+SELECT *  from students;
 update student set grade  = "B" where marks between 80 and 90;
 update student set grade  = "A" where marks between 91 and 100;
 update student set grade  = "A" where max(marks) >90;
@@ -67,3 +73,5 @@ update student set marks = marks+1;
 
 
 delete from student where marks <68;
+
+
