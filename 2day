@@ -1,0 +1,55 @@
+create database school;
+use school;
+
+//cascading : if we change one table another table should show that change
+create table departmnet(
+id int primary key,
+name varchar(50)
+);
+show tables;
+alter table  departmnet rename to  department;
+create table teacher(
+id int primary key,
+name varchar(50),
+dept_id int,
+foreign key (dept_id) references departmnet(id)
+on update cascade
+on delete cascade
+);
+select * from teacher
+inner join department on teacher.id = department.id;
+
+select * from teacher
+left join department on teacher.id = department.id;
+
+select * from teacher
+right join department on teacher.id = department.id;
+
+
+//union is full join
+select * from teacher
+left join department on teacher.id = department.id
+union
+select * from teacher
+right join department on teacher.id = department.id;
+
+
+insert into department values
+  (1 , "IT"),
+ (3 , "English");
+
+
+select * from department;
+select * from teacher;
+alter table dept rename to departmnet;
+
+insert into teacher values
+( 4, "AAM" ,1),
+(3 , "ABA" ,2)
+;
+drop table teacher;
+
+
+update dept 
+set id=0
+where id = 1;
